@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4571533624212DA500F1CDC5 /* LSITip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4571533524212DA500F1CDC5 /* LSITip.m */; };
+		45715339242133EF00F1CDC5 /* LSITipController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45715338242133EF00F1CDC5 /* LSITipController.m */; };
 		461E8A9A23EC7AF900C1F2B7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E8A9923EC7AF900C1F2B7 /* AppDelegate.m */; };
 		461E8A9D23EC7AF900C1F2B7 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 461E8A9C23EC7AF900C1F2B7 /* SceneDelegate.m */; };
 		461E8AA323EC7AF900C1F2B7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 461E8AA123EC7AF900C1F2B7 /* Main.storyboard */; };
@@ -17,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4571533424212DA500F1CDC5 /* LSITip.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSITip.h; sourceTree = "<group>"; };
+		4571533524212DA500F1CDC5 /* LSITip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSITip.m; sourceTree = "<group>"; };
+		45715337242133EF00F1CDC5 /* LSITipController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSITipController.h; sourceTree = "<group>"; };
+		45715338242133EF00F1CDC5 /* LSITipController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSITipController.m; sourceTree = "<group>"; };
 		461E8A9523EC7AF900C1F2B7 /* Tips.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tips.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		461E8A9823EC7AF900C1F2B7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		461E8A9923EC7AF900C1F2B7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,6 +48,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4571533324212CF400F1CDC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4571533424212DA500F1CDC5 /* LSITip.h */,
+				4571533524212DA500F1CDC5 /* LSITip.m */,
+				45715337242133EF00F1CDC5 /* LSITipController.h */,
+				45715338242133EF00F1CDC5 /* LSITipController.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		461E8A8C23EC7AF900C1F2B7 = {
 			isa = PBXGroup;
 			children = (
@@ -61,6 +78,7 @@
 		461E8A9723EC7AF900C1F2B7 /* Tips */ = {
 			isa = PBXGroup;
 			children = (
+				4571533324212CF400F1CDC5 /* Model */,
 				467F766323F2253000A284A5 /* View Controller */,
 				467F766723F2256000A284A5 /* Storyboards */,
 				467F766623F2255000A284A5 /* Resources */,
@@ -126,6 +144,7 @@
 		461E8A8D23EC7AF900C1F2B7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LSI;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Lambda School";
 				TargetAttributes = {
@@ -170,8 +189,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45715339242133EF00F1CDC5 /* LSITipController.m in Sources */,
 				461E8A9A23EC7AF900C1F2B7 /* AppDelegate.m in Sources */,
 				461E8AB923EC97E200C1F2B7 /* LSITipViewController.m in Sources */,
+				4571533624212DA500F1CDC5 /* LSITip.m in Sources */,
 				461E8AAB23EC7AFA00C1F2B7 /* main.m in Sources */,
 				461E8A9D23EC7AF900C1F2B7 /* SceneDelegate.m in Sources */,
 			);

@@ -7,14 +7,35 @@
 //
 
 #import "LSITipViewController.h"
+#import "LSITip.h"
+#import "LSITipController.h" // always import .h not.m
 
-@interface LSITipViewController ()
+//Class extension
+@interface LSITipViewController () <UITableViewDelegate, UITableViewDataSource>
 
 // Private Properties
+@property (nonatomic) LSITipController *tipController;
+
+@property (nonatomic) double subTotal;
+@property (nonatomic) int splitcount;
+@property (nonatomic) double tipPercentage;
+@property (nonatomic) double tip;
+@property (nonatomic) NSNumberFormatter *formatter;
 
 // Private IBOutlets
+@property (strong, nonatomic) IBOutlet UITextField *totalTextField;
+@property (strong, nonatomic) IBOutlet UILabel *splitLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tipLabel;
+@property (strong, nonatomic) IBOutlet UILabel *percentageLabel;
+@property (strong, nonatomic) IBOutlet UIStepper *splitStepper;
+@property (strong, nonatomic) IBOutlet UISlider *percentageSlider;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
 
 // Private Methods
+- (void)calculateTip;
+- (void)updateViews;
+- (void)saveTipNamed:(NSString *)name;
 
 @end
 
@@ -23,10 +44,23 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _tipController = [[LSITipController alloc] init];
+    
+    // Test Data, remove later
+    LSITip *tip = [[LSITip alloc] initWithName:@"Coffee and Tea" subTotal:14.59 tipPercentage:20.0 splitCount:1];
+    
+    [self.tipController addTip:tip];
+    NSLog(@"self.tipController.count: %ld", self.tipController.tips.count);
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self calculateTip];
 }
 
 - (void)calculateTip {
     // TODO: Calculate the tip using the values from the UI
+    NSLog(@"Calculate Tip");
 }
 
 - (void)updateViews {
@@ -40,6 +74,15 @@
 }
 
 // MARK: - IBActions
+- (IBAction)updateplit:(id)sender {
+    self.splitcount = round(self.splitStepper.value);
+    [self calculateTip];
+}
+
+- (IBAction)updatePercentage:(id)sender {
+    self.tipPercentage = round(self.percentageSlider.value);
+    [self calculateTip];
+}
 
 
 // TODO: Connect actions for splitChanged, sliderChanged, and Save Tip button
@@ -47,19 +90,37 @@
 
 // MARK: - UITableViewDataSource
 
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.tipController.tips.count;
+}
+
+- (NSNumberFormatter *)formatter{
+    if (!_formatter) {
+        _formatter = [[NSNumberFormatter alloc] init];
+        _formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    }
+    return _formatter;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TipCell" forIndexPath:indexPath];
+    
+    LSITip *tip = self.tipController.tips[indexPath.row];
+    cell.textLabel.text = tip.name;
+    cell.detailTextLabel.text = [self.formatter stringFromNumber:@(tip.subTotal)]; //Number literal syntax (wrapping inot NSNumber)
+    
+    return cell;
+    
+}
 
 // MARK: - UITableViewDelegate
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 // TODO: Load the selected tip from the controller
 
-//}
+ }
 
 // MARK: - Alert Helper
 
@@ -92,5 +153,6 @@
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
 
 @end
